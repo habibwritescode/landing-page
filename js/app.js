@@ -54,6 +54,17 @@ navUl.appendChild(fragment);
 
 
 // Scroll to anchor ID using scrollTO event
+function respondToClick(evt) {
+    if (evt.target.nodeName === 'A') {
+        evt.preventDefault();
+
+        document.querySelector(evt.target.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+}
+
+navUl.addEventListener('click', respondToClick);
 
 /**
  * End Main Functions
