@@ -34,18 +34,31 @@
 */
 
 // build the nav
+const fragment = document.createDocumentFragment();
+const subHeadings = document.querySelectorAll('h2');
+const navUl = document.querySelector('#navbar__list')
+const sections = document.querySelectorAll('section')
 
+for (let i = 0; i < subHeadings.length; i++) {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<a>${subHeadings[i].textContent}</a>`;
+    listItem.querySelector('a').setAttribute('href', '#' + sections[i].id);
+    listItem.style.color = 'red';
+    listItem.style.padding = '10px';
 
+    fragment.appendChild(listItem);
+}
+
+navUl.appendChild(fragment);
 // Add class 'active' to section when near top of viewport
 
 
 // Scroll to anchor ID using scrollTO event
 
-
 /**
  * End Main Functions
  * Begin Events
- * 
+ *
 */
 
 // Build menu 
