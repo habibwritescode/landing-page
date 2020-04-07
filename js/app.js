@@ -43,12 +43,12 @@ function respondToClick(evt) {
 
 // Listener for knowing if a section is in the viewport
 function isIntoView(element) {
-    let rect = element.getBoundingClientRect();
-    let elemTop = rect.top;
-    let elemBottom = rect.bottom;
+    const rect = element.getBoundingClientRect();
+    const elemTop = rect.top;
+    const elemBottom = rect.bottom;
 
     // Visible elements will return true:
-    let isInView = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    const isInView = (elemTop >= 0) && (elemBottom <= window.innerHeight);
     return isInView;
 }
 
@@ -68,7 +68,7 @@ function buildNav() {
         const listItem = document.createElement('li');
         listItem.innerHTML = `<a>${subHeadings[i].textContent}</a>`;
         listItem.querySelector('a').setAttribute('href', '#' + sections[i].id);
-        listItem.querySelector('a').className = 'link';
+        listItem.querySelector('a').className = 'menu__link';
 
         fragment.appendChild(listItem);
     }
@@ -102,33 +102,21 @@ scrollToAnchorId()
 // Set sections as active
 
 window.addEventListener('scroll', function() {
+    const links = navUl.querySelectorAll('a');
+
     for (let i = 0; i < sections.length; i++) {
         if (isIntoView(sections[i])) {
+            // Add active state to section header
             sections[i].classList.add('your-active-class');
+            // Add active state to navigation items
+            links[i].classList.add('active');
+
+            // if section is not in the viewport
         } else {
-            sections[i].classList = "";
+            sections[i].classList.remove('your-active-class');
+            // Remove active state from navigation items
+            links[i].classList.remove('active');
 
         }
     }
 })
-
-
-// Loop through the links and add the active class to the current/clicked link
-function addActiveClassToLink() {
-    const links = navUl.getElementsByClassName('link')
-
-    for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-
-            // If there's no active class
-            if (current.length > 0) {
-                current[0].className = current[0].className.replace(" active", "");
-            }
-
-            // Add the active class to the current/clicked link
-            this.className += " active";
-        });
-    }
-}
-addActiveClassToLink()
