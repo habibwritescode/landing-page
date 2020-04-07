@@ -6,7 +6,11 @@
 
 - I converted this project from a static project to an interactive one. This required modifying the HTML and CSS files, but primarily the JavaScript file.
 
-## Interactions
+## Hosted
+
+- https://habibwritescode.github.io/landing-page/
+
+## Interaction & Functionality
 
 - Dynamically add navigation menu depending on the sections added to the page.
 
